@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Predictor</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input, button { padding: 10px; margin: 5px; }
+        #result { margin-top: 20px; color: #333; }
+        #error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Stock Market Predictor</h1>
+    <input type="text" id="stockSymbol" placeholder="Enter Stock Symbol (e.g., AAPL)" autofocus>
+    <button onclick="makePrediction()">Predict</button>
+    <div id="result"></div>
+    <div id="additionalInfo"></div>
+    <div id="error"></div>
+    <div id="loadingMessage" style="display: none;">Loading prediction...</div>
+
+    <script>
+        function makePrediction() {
+            const symbol = document.getElementById('stockSymbol').value.trim();
+            const resultElement = document.getElementById('result');
+            const loadingElement = document.getElementById('loadingMessage');
+            const errorElement = document.getElementById('error');
+
+            console.log('Making prediction for:', symbol); // Log the symbol being predicted
+
+            // Reset content
+            resultElement.textContent = '';
+            errorElement.textContent = '';
+            loadingElement.style.display = 'block'; // Show loading message
+
+            if (!symbol) {
+                console.log('No symbol entered'); // Log when no symbol is entered
+                errorElement.textContent = 'Please enter a stock symbol.';
+                loadingElement.style.display = 'none'; // Hide loading message
+                return;
+            }
+
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symbol: symbol })
+            })
+            .then(response => {
+                console.log('Received response:', response); // Log response object
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data); // Log data received from the server
+                if (data.error) {
+                    errorElement.textContent = data.error;
+                } else {
+                    resultElement.innerHTML = 'Symbol: ' + JSON.stringify(data.symbol) +
+                                          '<br>If using the model your value in the stock increases' + JSON.stringify(data.precision_score) +
+                                          '<br>Without the model your value in the stock increases: ' + JSON.stringify(data.benchmark_score) +
+                                          '<br>Recommendation: ' + JSON.stringify(data.recommendations);
+
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorElement.textContent = 'Failed to fetch prediction. Check console for details.';
+            })
+            .finally(() => {
+                loadingElement.style.display = 'none'; // Hide loading message regardless of the result
+            });
+        }
+    </script>
+</body>
+</html>
