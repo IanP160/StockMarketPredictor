@@ -2,3 +2,4 @@ Flask==2.1.0
 pandas==1.5.0
 numpy==1.23.0
 Werkzeug==2.0.3  # Use an older version compatible with Flask 2.1.0
+matplotlib==3.5.0  # Use a version compatible with your Python version
