@@ -168,7 +168,7 @@ def predict_stock():
 
     except Exception as e:
         logging.error(f"Error in predict_stock: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e), 'logs': log_messages}), 500
 
 def convert_timestamps(obj):
     if isinstance(obj, pd.DataFrame):
