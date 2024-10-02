@@ -1,6 +1,7 @@
 import logging
 import pandas as pd
 import numpy as np
+import flask_cors
 from pandas import Timestamp
 from flask import Flask, request, jsonify, render_template
 from StockPredictor import (
