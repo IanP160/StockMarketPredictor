@@ -30,6 +30,9 @@ def log(message):
 @app.route('/predict', methods=['POST'])
 def predict_stock():
     try:
+
+        global log_messages
+        log_messages = []  # Reset log messages for each request
         data = request.get_json()
         symbol = data.get('symbol', '^GSPC')  # S&P 500 as default symbol
         period = data.get('period', 'max')    # Default to 1 month of data if not specified
