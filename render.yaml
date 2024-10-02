@@ -1,7 +1,11 @@
+# Exported from Render on 2024-10-02T16:17:10Z
 services:
 - type: web
-  name: stock-market-predictor
-  env: python
+  name: StockMarketPredictor
+  runtime: python
+  repo: https://github.com/IanP160/StockMarketPredictor
   plan: free
-  buildCommand: "pip install -r requirements.txt"
-  startCommand: "python app.py"
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn -w 4 -b 0.0.0.0:10000 app:app
+version: "1"
