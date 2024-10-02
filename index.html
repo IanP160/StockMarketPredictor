@@ -27,8 +27,6 @@
             const loadingElement = document.getElementById('loadingMessage');
             const errorElement = document.getElementById('error');
 
-            const additionalInfoElement = document.getElementById('additionalInfo');
-            additionalInfoElement.innerHTML = '<strong>Log Messages:</strong><br>' + data.logs.join('<br>');
     
 
             console.log('Making prediction for:', symbol); // Log the symbol being predicted
@@ -68,7 +66,8 @@
                                           '<br>If using the model your value in the stock increases' + JSON.stringify(data.precision_score) +
                                           '<br>Without the model your value in the stock increases: ' + JSON.stringify(data.benchmark_score) +
                                           '<br>Recommendation: ' + JSON.stringify(data.recommendations);
-
+                    const additionalInfoElement = document.getElementById('additionalInfo');
+                    additionalInfoElement.innerHTML = '<strong>Log Messages:</strong><br>' + data.logs.join('<br>');
                 }
             })
             .catch(error => {
