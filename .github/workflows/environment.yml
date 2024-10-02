@@ -1,10 +1,1 @@
-name: stock-market-predictor
-channels:
-  - defaults
-dependencies:
-  - python=3.9
-  - pandas
-  - flask
-  - numpy
-  - scikit-learn
-  - pip
+
