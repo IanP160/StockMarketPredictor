@@ -6,4 +6,5 @@ matplotlib==3.5.0
 yfinance==0.2.18
 scikit-learn==1.2.2
 textblob==0.17.1
-flask-cors==3.0.10  # Add the latest stable version of flask-cors
+flask-cors==3.0.10
+requests==2.31.0 
