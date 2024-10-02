@@ -3,4 +3,5 @@ pandas==1.5.0
 numpy==1.23.0
 Werkzeug==2.0.3
 matplotlib==3.5.0
-yfinance==0.2.18  # Use the latest stable version
+yfinance==0.2.18
+scikit-learn==1.2.2 
