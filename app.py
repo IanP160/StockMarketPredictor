@@ -53,7 +53,6 @@ def predict_stock():
         else:
             logging.info("Prepared data fetched successfully.")
 
-        sentiment_score = fetch_news_sentiment(symbol)
 
 
         prepared_data, new_predictors = add_horizons(prepared_data, [2, 5, 60, 250, 1000])
@@ -96,6 +95,7 @@ def predict_stock():
             logging.warning("Predictors are empty after creation.")
         else:
             logging.info("Predictors created successfully")
+        sentiment_score = fetch_news_sentiment(symbol)
 
         # Make predictions
         if 'Sentiment' not in test_data.columns:
