@@ -23,6 +23,10 @@ model = load_model()
 def home():
     return render_template('index.html')
 
+def log(message):
+    logging.info(message)
+    log_messages.append(message)
+
 @app.route('/predict', methods=['POST'])
 def predict_stock():
     try:
