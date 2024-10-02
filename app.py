@@ -12,7 +12,11 @@ from StockPredictor import (
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)  # Set the logging level to debug to see all messages
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+
 model = load_model()
 
 @app.route('/', methods=['GET'])
