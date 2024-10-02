@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.DEBUG)  # Set the logging level to debug to se
 
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='.')
 CORS(app)
 
 model = load_model()
