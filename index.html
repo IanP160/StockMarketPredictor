@@ -27,8 +27,12 @@
             const loadingElement = document.getElementById('loadingMessage');
             const errorElement = document.getElementById('error');
 
-            console.log('Making prediction for:', symbol); // Log the symbol being predicted
+            const additionalInfoElement = document.getElementById('additionalInfo');
+            additionalInfoElement.innerHTML = '<strong>Log Messages:</strong><br>' + data.logs.join('<br>');
+    
 
+            console.log('Making prediction for:', symbol); // Log the symbol being predicted
+                
             // Reset content
             resultElement.textContent = '';
             errorElement.textContent = '';
