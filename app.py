@@ -153,7 +153,9 @@ def predict_stock():
             'recommendations': recommendations,
             'precision_score': precision_score_val,
             'benchmark_score': benchmark_score,  # Wrapping scalar in a dictionary
-            'sentiment_score': sentiment_score
+            'sentiment_score': sentiment_score,
+            'logs': log_messages  # Include log messages in the response
+
 
             ##'backtest_results': backtest_results_dict
         })
