@@ -73,6 +73,8 @@
             .catch(error => {
                 console.error('Error:', error);
                 errorElement.textContent = 'Failed to fetch prediction. Check console for details.';
+                const additionalInfoElement = document.getElementById('additionalInfo');
+                additionalInfoElement.innerHTML = '<strong>Log Messages:</strong><br>' + data.logs.join('<br>');
             })
             .finally(() => {
                 loadingElement.style.display = 'none'; // Hide loading message regardless of the result
